@@ -12,6 +12,10 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
       background: #f5f7fb;
@@ -29,7 +33,6 @@
       display: block;
     }
 
-    /* 레이아웃 공통 */
     .container {
       width: 100%;
       max-width: 1120px;
@@ -51,9 +54,15 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(15,23,42,0.06);
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(15,23,42,0.04);
+      transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    header.header-scrolled {
+      box-shadow: 0 10px 30px rgba(15,23,42,0.06);
+      border-bottom-color: transparent;
     }
 
     .nav {
@@ -77,18 +86,39 @@
       width: 28px;
       height: 28px;
       border-radius: 999px;
-      background: linear-gradient(135deg, #4f46e5, #22c1c3);
+      background: radial-gradient(circle at 20% 20%, #a5b4fc 0, #4f46e5 35%, #22c1c3 100%);
     }
 
     .nav-menu {
-      display: flex;
+      display: none;
       gap: 24px;
       font-size: 14px;
       color: #6b7280;
     }
 
+    .nav-menu a {
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .nav-menu a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #4f46e5, #22c1c3);
+      transition: width 0.18s ease;
+    }
+
     .nav-menu a:hover {
       color: #111827;
+    }
+
+    .nav-menu a:hover::after {
+      width: 100%;
     }
 
     .nav-cta {
@@ -108,6 +138,12 @@
       justify-content: center;
       gap: 6px;
       white-space: nowrap;
+      transition: transform 0.1s ease, box-shadow 0.15s ease, background 0.15s ease, filter 0.15s ease;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+      box-shadow: none;
     }
 
     .btn-primary {
@@ -117,36 +153,105 @@
       box-shadow: 0 12px 30px rgba(79,70,229,0.35);
     }
 
+    .btn-primary:hover {
+      filter: brightness(1.03);
+      box-shadow: 0 16px 40px rgba(79,70,229,0.45);
+    }
+
     .btn-ghost {
       background: transparent;
       color: #4b5563;
       border: 1px solid #e5e7eb;
     }
 
-    .btn-primary:hover {
-      filter: brightness(1.03);
-    }
-
     .btn-ghost:hover {
       background: #f9fafb;
     }
 
-    /* 모바일 네비 간단 처리 */
-    .nav-menu {
-      display: none;
+    .btn-text {
+      background: transparent;
+      border: none;
+      padding: 0;
+      font-size: 13px;
+      color: #4f46e5;
+    }
+
+    .btn-text span {
+      font-size: 16px;
+    }
+
+    /* 모바일 메뉴 */
+    .nav-toggle {
+      display: inline-flex;
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+      cursor: pointer;
+    }
+
+    .nav-toggle span {
+      width: 14px;
+      height: 2px;
+      border-radius: 999px;
+      background: #111827;
+      position: relative;
+    }
+
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 14px;
+      height: 2px;
+      border-radius: 999px;
+      background: #111827;
+    }
+
+    .nav-toggle span::before {
+      top: -4px;
+    }
+
+    .nav-toggle span::after {
+      top: 4px;
+    }
+
+    .nav-toggle {
+      display: inline-flex;
     }
 
     @media (min-width: 768px) {
       .nav-menu {
         display: flex;
       }
+      .nav-toggle {
+        display: none;
+      }
     }
 
-    /* 히어로 섹션 */
+    .nav-menu-mobile {
+      display: none;
+      flex-direction: column;
+      gap: 12px;
+      padding: 10px 0 14px;
+      font-size: 14px;
+      color: #4b5563;
+    }
+
+    .nav-menu-mobile.open {
+      display: flex;
+    }
+
+    /* 히어로 */
     .hero {
       padding: 72px 0 96px;
-      background: radial-gradient(circle at top left, #e0e7ff 0, transparent 45%),
-                  radial-gradient(circle at bottom right, #d1fae5 0, transparent 50%);
+      background:
+        radial-gradient(circle at top left, rgba(224,231,255,0.9) 0, transparent 48%),
+        radial-gradient(circle at bottom right, rgba(209,250,229,0.9) 0, transparent 50%);
     }
 
     .hero-inner {
@@ -241,7 +346,7 @@
 
     .hero-phone-screen {
       border-radius: 24px;
-      background: linear-gradient(145deg, #0f172a, #111827);
+      background: linear-gradient(145deg, #020617, #020617);
       padding: 16px;
       color: #e5e7eb;
       font-size: 12px;
@@ -307,7 +412,7 @@
       font-size: 11px;
     }
 
-    /* 섹션 타이틀 */
+    /* 섹션 공통 */
     .section-title-area {
       margin-bottom: 40px;
     }
@@ -327,6 +432,18 @@
       font-size: 14px;
       color: #6b7280;
       max-width: 520px;
+    }
+
+    .label-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #eef2ff;
+      color: #4f46e5;
+      font-size: 11px;
+      margin-bottom: 10px;
     }
 
     /* 소개 섹션 */
@@ -362,16 +479,37 @@
       margin-bottom: 6px;
     }
 
-    .label-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: #eef2ff;
-      color: #4f46e5;
+    /* WHY FINUP */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px) {
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .why-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 18px 16px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .why-tag {
       font-size: 11px;
-      margin-bottom: 10px;
+      color: #6366f1;
+      margin-bottom: 4px;
+    }
+
+    .why-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
     }
 
     /* 기능 카드 */
@@ -401,6 +539,13 @@
       box-shadow: 0 10px 24px rgba(15,23,42,0.03);
       font-size: 13px;
       color: #4b5563;
+      transition: transform 0.12s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(15,23,42,0.08);
+      border-color: #c7d2fe;
     }
 
     .feature-icon {
@@ -459,6 +604,63 @@
       font-size: 15px;
       font-weight: 600;
       margin-bottom: 6px;
+    }
+
+    /* 스크린샷 섹션 */
+    .screens-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    @media (max-width: 900px) {
+      .screens-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .screen-card {
+      border-radius: 22px;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+      padding: 16px 14px;
+      font-size: 12px;
+      color: #4b5563;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .screen-head {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #111827;
+    }
+
+    .screen-tag {
+      font-size: 11px;
+      color: #6366f1;
+      margin-bottom: 6px;
+    }
+
+    .screen-placeholder {
+      margin-top: 8px;
+      border-radius: 16px;
+      background: repeating-linear-gradient(
+        135deg,
+        #eef2ff,
+        #eef2ff 6px,
+        #e5e7eb 6px,
+        #e5e7eb 10px
+      );
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #4b5563;
     }
 
     /* 추천 대상 */
@@ -528,7 +730,7 @@
       color: #4b5563;
     }
 
-    /* CTA 섹션 */
+    /* CTA / 베타 신청 */
     .cta {
       margin-top: 40px;
       background: linear-gradient(135deg, #4f46e5, #22c1c3);
@@ -551,6 +753,76 @@
     .cta-desc {
       font-size: 13px;
       opacity: 0.9;
+    }
+
+    /* 베타 신청 폼 */
+    #beta {
+      padding-top: 40px;
+      padding-bottom: 80px;
+    }
+
+    .beta-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 28px;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 900px) {
+      .beta-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .beta-form-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 20px 18px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 10px 24px rgba(15,23,42,0.04);
+      font-size: 13px;
+    }
+
+    .beta-form-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+
+    .beta-form-row label {
+      font-size: 12px;
+      color: #4b5563;
+    }
+
+    .beta-input, .beta-textarea, .beta-select {
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      padding: 8px 10px;
+      font-size: 13px;
+      outline: none;
+      font-family: inherit;
+      background: #f9fafb;
+      transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .beta-input:focus,
+    .beta-textarea:focus,
+    .beta-select:focus {
+      border-color: #6366f1;
+      background: #ffffff;
+      box-shadow: 0 0 0 1px rgba(99,102,241,0.2);
+    }
+
+    .beta-textarea {
+      resize: vertical;
+      min-height: 70px;
+    }
+
+    .beta-note {
+      font-size: 12px;
+      color: #6b7280;
+      margin-top: 8px;
     }
 
     /* Footer */
@@ -591,34 +863,63 @@
       gap: 12px;
       justify-content: space-between;
     }
+
+    /* 간단한 스크롤 애니메이션 */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body>
   <!-- 헤더 -->
-  <header>
-    <div class="container nav">
-      <a href="#hero" class="logo">
-        <div class="logo-pill"></div>
-        <span>FINUP</span>
-      </a>
-      <nav class="nav-menu">
+  <header id="site-header">
+    <div class="container">
+      <div class="nav">
+        <a href="#hero" class="logo">
+          <div class="logo-pill"></div>
+          <span>FINUP</span>
+        </a>
+
+        <nav class="nav-menu">
+          <a href="#about">서비스 소개</a>
+          <a href="#why">왜 FINUP인가</a>
+          <a href="#features">핵심 기능</a>
+          <a href="#flow">이용 방법</a>
+          <a href="#who">추천 대상</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+
+        <div class="nav-cta">
+          <button class="btn btn-ghost" onclick="scrollToSection('beta')">웹으로 먼저 써보기</button>
+          <button class="btn btn-primary" onclick="scrollToSection('beta')">앱 출시 알림 받기</button>
+          <button class="nav-toggle" id="nav-toggle" aria-label="메뉴 열기">
+            <span></span>
+          </button>
+        </div>
+      </div>
+      <nav class="container nav-menu-mobile" id="nav-menu-mobile">
         <a href="#about">서비스 소개</a>
+        <a href="#why">왜 FINUP인가</a>
         <a href="#features">핵심 기능</a>
         <a href="#flow">이용 방법</a>
         <a href="#who">추천 대상</a>
         <a href="#faq">FAQ</a>
+        <button class="btn btn-primary" style="margin-top:4px;" onclick="scrollToSection('beta')">앱 출시 알림 받기</button>
       </nav>
-      <div class="nav-cta">
-        <button class="btn btn-ghost">웹으로 먼저 써보기</button>
-        <button class="btn btn-primary">앱 출시 알림 받기</button>
-      </div>
     </div>
   </header>
 
   <!-- 히어로 -->
   <main>
     <section id="hero" class="hero">
-      <div class="container hero-inner">
+      <div class="container hero-inner reveal">
         <div>
           <div class="hero-tag">
             <span>📱 청년을 위한 금융 인포메이션</span>
@@ -634,8 +935,8 @@
             캐주얼하게 정리해서 알려줘요.
           </p>
           <div class="hero-actions">
-            <button class="btn btn-primary">앱 출시 알림 받기</button>
-            <button class="btn btn-ghost">브랜드 소개서 내려받기</button>
+            <button class="btn btn-primary" onclick="scrollToSection('beta')">앱 출시 알림 받기</button>
+            <button class="btn btn-ghost" onclick="scrollToSection('features')">핵심 기능 먼저 보기</button>
           </div>
           <p class="hero-desc-2">
             아직 베타 준비 중이에요. 알림을 신청해 두시면 가장 먼저 소식을 보내드릴게요.
@@ -692,7 +993,7 @@
 
     <!-- 서비스 소개 -->
     <section id="about">
-      <div class="container">
+      <div class="container reveal">
         <div class="section-title-area">
           <div class="section-eyebrow">ABOUT FINUP</div>
           <h2 class="section-title">FINUP은 이런 브랜드예요</h2>
@@ -735,9 +1036,50 @@
       </div>
     </section>
 
+    <!-- WHY FINUP -->
+    <section id="why">
+      <div class="container reveal">
+        <div class="section-title-area">
+          <div class="section-eyebrow">WHY FINUP</div>
+          <h2 class="section-title">다른 금융 앱 대신, 왜 FINUP인가요?</h2>
+          <p class="section-desc">
+            기존 앱들이 &lsquo;모든 금융&rsquo;을 다루는 동안, FINUP은  
+            <strong>청년의 &lsquo;지금&rsquo;에 꼭 필요한 정보</strong>에만 집중합니다.
+          </p>
+        </div>
+
+        <div class="why-grid">
+          <div class="why-card">
+            <div class="why-tag">01. 포지셔닝</div>
+            <div class="why-title">“재테크 앱”이 아니라 “금융 동반자”</div>
+            <p>
+              투자 수익을 자랑하는 대신,  
+              오늘 당장 새는 돈을 막고 나에게 맞는 기준을 세우는 데 집중합니다.
+            </p>
+          </div>
+          <div class="why-card">
+            <div class="why-tag">02. 타깃</div>
+            <div class="why-title">대학생·사회초년생에 딱 맞춘 언어</div>
+            <p>
+              연봉 1억 자산가가 아니라,  
+              막 사회에 나온 청년의 월급·월세·등록금 현실에 맞는 예시 위주로 설명합니다.
+            </p>
+          </div>
+          <div class="why-card">
+            <div class="why-tag">03. 경험</div>
+            <div class="why-title">하루 5분, 부담 없는 루틴</div>
+            <p>
+              공부하듯 빡세게 배우는 게 아니라,  
+              출·퇴근길에 한 장 요약만 훑어봐도 의미 있는 인사이트를 가져가도록 디자인합니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- 핵심 기능 -->
     <section id="features">
-      <div class="container">
+      <div class="container reveal">
         <div class="section-title-area">
           <div class="section-eyebrow">FEATURES</div>
           <h2 class="section-title">FINUP에서 할 수 있는 것들</h2>
@@ -817,14 +1159,14 @@
               아래 버튼을 눌러 베타 소식을 가장 먼저 받아보세요.
             </div>
           </div>
-          <button class="btn btn-primary">베타 소식 먼저 받기</button>
+          <button class="btn btn-primary" onclick="scrollToSection('beta')">베타 소식 먼저 받기</button>
         </div>
       </div>
     </section>
 
     <!-- 이용 방법 -->
     <section id="flow">
-      <div class="container">
+      <div class="container reveal">
         <div class="section-title-area">
           <div class="section-eyebrow">HOW IT WORKS</div>
           <h2 class="section-title">3단계로 끝나는 FINUP 사용 흐름</h2>
@@ -863,9 +1205,56 @@
       </div>
     </section>
 
+    <!-- 화면 예시 / 스크린샷 자리 -->
+    <section id="screens">
+      <div class="container reveal">
+        <div class="section-title-area">
+          <div class="section-eyebrow">PRODUCT SNAPSHOT</div>
+          <h2 class="section-title">FINUP 화면은 이렇게 구성돼요</h2>
+          <p class="section-desc">
+            아래는 실제 앱 디자인이 들어갈 자리예요.  
+            지금은 와이어프레임 형태지만, 나중에 Figma 시안이 나오면 이미지만 교체하면 됩니다.
+          </p>
+        </div>
+
+        <div class="screens-grid">
+          <div class="screen-card">
+            <div>
+              <div class="screen-tag">HOME</div>
+              <div class="screen-head">오늘의 금융 한 장 요약</div>
+              <p>소비 요약, 계좌 잔액, 오늘의 체크리스트가 한 화면에 배치됩니다.</p>
+            </div>
+            <div class="screen-placeholder">
+              홈 화면 목업 이미지 자리
+            </div>
+          </div>
+          <div class="screen-card">
+            <div>
+              <div class="screen-tag">GUIDE</div>
+              <div class="screen-head">청년 맞춤 금융 가이드</div>
+              <p>“첫 월급 사용법” 같은 테마 콘텐츠를 스토리 형식으로 제공합니다.</p>
+            </div>
+            <div class="screen-placeholder">
+              가이드 화면 목업 이미지 자리
+            </div>
+          </div>
+          <div class="screen-card">
+            <div>
+              <div class="screen-tag">INSIGHT</div>
+              <div class="screen-head">한 달 소비 인사이트</div>
+              <p>카테고리별 지출 그래프와 함께, 다음 달을 위한 제안을 보여줍니다.</p>
+            </div>
+            <div class="screen-placeholder">
+              인사이트 화면 목업 이미지 자리
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- 추천 대상 -->
     <section id="who">
-      <div class="container">
+      <div class="container reveal">
         <div class="section-title-area">
           <div class="section-eyebrow">FOR WHOM</div>
           <h2 class="section-title">이런 분께 FINUP을 추천해요</h2>
@@ -906,7 +1295,7 @@
 
     <!-- FAQ -->
     <section id="faq">
-      <div class="container">
+      <div class="container reveal">
         <div class="section-title-area">
           <div class="section-eyebrow">FAQ</div>
           <h2 class="section-title">자주 묻는 질문</h2>
@@ -949,6 +1338,70 @@
         </div>
       </div>
     </section>
+
+    <!-- 베타 신청 섹션 -->
+    <section id="beta">
+      <div class="container reveal">
+        <div class="section-title-area">
+          <div class="section-eyebrow">BETA SIGN-UP</div>
+          <h2 class="section-title">FINUP 베타 출시 알림 받기</h2>
+          <p class="section-desc">
+            실제 출시는 아직 준비 중이지만, 베타 오픈 시 가장 먼저 소식을 받아보고 싶은 분들은  
+            아래 정보를 간단히 남겨 주세요. (지금은 데모 폼이며, 추후 실제 신청 폼으로 교체 예정입니다.)
+          </p>
+        </div>
+
+        <div class="beta-layout">
+          <div class="beta-form-card">
+            <form onsubmit="handleFakeSubmit(event)">
+              <div class="beta-form-row">
+                <label for="name">이름</label>
+                <input id="name" class="beta-input" type="text" placeholder="홍길동" required />
+              </div>
+              <div class="beta-form-row">
+                <label for="email">이메일</label>
+                <input id="email" class="beta-input" type="email" placeholder="you@example.com" required />
+              </div>
+              <div class="beta-form-row">
+                <label for="role">현재 상태</label>
+                <select id="role" class="beta-select">
+                  <option value="">선택해주세요</option>
+                  <option value="student">대학생</option>
+                  <option value="job-seeker">취준생</option>
+                  <option value="junior">사회초년생</option>
+                  <option value="other">기타</option>
+                </select>
+              </div>
+              <div class="beta-form-row">
+                <label for="interest">FINUP에서 가장 기대하는 점</label>
+                <textarea id="interest" class="beta-textarea" placeholder="예: 청년 지원금 놓치지 않게 알림 받고 싶어요"></textarea>
+              </div>
+              <button class="btn btn-primary" type="submit" style="margin-top: 6px;">베타 알림 신청하기 (데모)</button>
+              <div class="beta-note">
+                실제 서비스 오픈 전에는 어떠한 광고 메일도 보내지 않으며,  
+                입력하신 정보는 오직 제품 개발 참고용으로만 사용될 예정입니다. (데모 텍스트)
+              </div>
+            </form>
+          </div>
+
+          <div>
+            <div class="label-pill">🤝 함께 만드는 서비스</div>
+            <p style="font-size:14px; color:#4b5563; margin-bottom:12px;">
+              FINUP은 처음부터 완성된 제품이 아니라,  
+              실제 사용자 목소리를 들으면서 계속 다듬어 가는 &lsquo;진행형 프로젝트&rsquo;입니다.
+            </p>
+            <ul style="font-size:13px; color:#4b5563; padding-left:18px; margin-bottom:10px;">
+              <li>베타 기간 동안 기능/화면 피드백에 우선 반영</li>
+              <li>출시 전 비공개 기능을 먼저 체험할 수 있는 기회</li>
+              <li>서비스 크레딧 또는 작은 리워드를 제공할 예정 (추후 안내)</li>
+            </ul>
+            <button class="btn btn-text" type="button" onclick="scrollToSection('hero')">
+              홈으로 올라가기 <span>↑</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- Footer -->
@@ -960,8 +1413,9 @@
           <span>FINUP</span>
         </div>
         <div class="footer-links">
-          <a href="#">브랜드 소개</a>
-          <a href="#">문의하기</a>
+          <a href="#about">브랜드 소개</a>
+          <a href="#beta">베타 신청</a>
+          <a href="#">문의하기(준비 중)</a>
           <a href="#">개인정보 처리방침 (예정)</a>
           <a href="#">이용약관 (예정)</a>
         </div>
@@ -975,8 +1429,63 @@
         </div>
       </div>
     </div>
+
     <script>
+      // 현재 연도
       document.getElementById('year').textContent = new Date().getFullYear();
+
+      // 부드러운 스크롤 + 헤더 높이 보정
+      function scrollToSection(id) {
+        const target = document.getElementById(id);
+        if (!target) return;
+        const header = document.getElementById('site-header');
+        const headerHeight = header.offsetHeight;
+        const rect = target.getBoundingClientRect();
+        const offset = rect.top + window.scrollY - headerHeight - 8;
+        window.scrollTo({ top: offset, behavior: 'smooth' });
+      }
+
+      // 모바일 메뉴 토글
+      const toggleBtn = document.getElementById('nav-toggle');
+      const mobileMenu = document.getElementById('nav-menu-mobile');
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+          mobileMenu.classList.toggle('open');
+        });
+      }
+
+      // 헤더 그림자 처리
+      const header = document.getElementById('site-header');
+      function handleScroll() {
+        if (window.scrollY > 10) {
+          header.classList.add('header-scrolled');
+        } else {
+          header.classList.remove('header-scrolled');
+        }
+      }
+      window.addEventListener('scroll', handleScroll);
+      handleScroll();
+
+      // 스크롤 애니메이션
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+      // 베타 신청 데모 알림
+      function handleFakeSubmit(e) {
+        e.preventDefault();
+        alert('지금은 데모 폼이라 실제로 저장되지는 않지만,\n실 서비스에서는 이 자리에서 베타 신청이 접수될 예정입니다 🙂');
+      }
     </script>
   </footer>
 </body>
