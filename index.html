@@ -83,10 +83,7 @@
     }
 
     .logo-pill {
-      width: 28px;
-      height: 28px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 20% 20%, #a5b4fc 0, #4f46e5 35%, #22c1c3 100%);
+      display: none;
     }
 
     .nav-menu {
@@ -875,6 +872,15 @@
       opacity: 1;
       transform: translateY(0);
     }
+    .logo-img {
+  height: 24px;
+  width: auto;
+  display: block;
+    }
+
+    .logo-pill {
+  display: none;
+    }
   </style>
 </head>
 <body>
@@ -883,9 +889,9 @@
     <div class="container">
       <div class="nav">
         <a href="#hero" class="logo">
-          <div class="logo-pill"></div>
-          <span>FINUP</span>
-        </a>
+      <img src="finup-logo.png" alt="FINUP 로고" class="logo-img">
+      <span>FINUP</span>
+    </a>
 
         <nav class="nav-menu">
           <a href="#about">서비스 소개</a>
@@ -1409,7 +1415,7 @@
     <div class="container">
       <div class="footer-top">
         <div class="logo">
-          <div class="logo-pill"></div>
+          <img src="finup-logo.png" alt="FINUP 로고" class="logo-img">
           <span>FINUP</span>
         </div>
         <div class="footer-links">
@@ -1490,3 +1496,4 @@
   </footer>
 </body>
 </html>
+
