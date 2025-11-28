@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>FINUP | 청년을 위한 금융 정보 플랫폼</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="FINUP은 청년에게 꼭 필요한 금융 정보를 쉽고 캐주얼하게 정리해주는 서비스입니다." />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      background: #f5f7fb;
+      color: #111827;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* 레이아웃 공통 */
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    h1, h2, h3 {
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    /* 헤더 */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(15,23,42,0.06);
+    }
+
+    .nav {
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.06em;
+    }
+
+    .logo-pill {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #4f46e5, #22c1c3);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 24px;
+      font-size: 14px;
+      color: #6b7280;
+    }
+
+    .nav-menu a:hover {
+      color: #111827;
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #4f46e5, #6366f1);
+      color: #ffffff;
+      font-weight: 600;
+      box-shadow: 0 12px 30px rgba(79,70,229,0.35);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: #4b5563;
+      border: 1px solid #e5e7eb;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.03);
+    }
+
+    .btn-ghost:hover {
+      background: #f9fafb;
+    }
+
+    /* 모바일 네비 간단 처리 */
+    .nav-menu {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .nav-menu {
+        display: flex;
+      }
+    }
+
+    /* 히어로 섹션 */
+    .hero {
+      padding: 72px 0 96px;
+      background: radial-gradient(circle at top left, #e0e7ff 0, transparent 45%),
+                  radial-gradient(circle at bottom right, #d1fae5 0, transparent 50%);
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.04);
+      font-size: 12px;
+      color: #4b5563;
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-size: clamp(32px, 4vw, 44px);
+      margin-bottom: 16px;
+    }
+
+    .hero-title span {
+      color: #4f46e5;
+    }
+
+    .hero-desc {
+      font-size: 15px;
+      color: #4b5563;
+      margin-bottom: 24px;
+    }
+
+    .hero-desc-2 {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-top: 12px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    .hero-badge {
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(148,163,184,0.3);
+    }
+
+    .hero-phone {
+      border-radius: 32px;
+      background: #020617;
+      padding: 16px 12px;
+      width: min(320px, 100%);
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      box-shadow:
+        0 18px 45px rgba(15,23,42,0.45),
+        0 0 0 1px rgba(148,163,184,0.6);
+    }
+
+    .hero-phone-notch {
+      width: 100px;
+      height: 10px;
+      border-radius: 999px;
+      background: #020617;
+      margin: 0 auto 10px;
+    }
+
+    .hero-phone-screen {
+      border-radius: 24px;
+      background: linear-gradient(145deg, #0f172a, #111827);
+      padding: 16px;
+      color: #e5e7eb;
+      font-size: 12px;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .hero-phone-tag {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(148,163,184,0.15);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .hero-phone-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+
+    .hero-phone-chip {
+      margin-top: 14px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(148,163,184,0.4);
+      background: rgba(15,23,42,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 11px;
+    }
+
+    .hero-phone-label {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-bottom: 4px;
+    }
+
+    .hero-phone-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+    }
+
+    .hero-phone-pill {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(37,99,235,0.3);
+      font-size: 11px;
+    }
+
+    /* 섹션 타이틀 */
+    .section-title-area {
+      margin-bottom: 40px;
+    }
+
+    .section-eyebrow {
+      font-size: 12px;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .section-desc {
+      font-size: 14px;
+      color: #6b7280;
+      max-width: 520px;
+    }
+
+    /* 소개 섹션 */
+    .intro-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .intro-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .intro-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 24px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 12px 30px rgba(15,23,42,0.04);
+      font-size: 14px;
+      color: #4b5563;
+    }
+
+    .intro-card ul {
+      margin-top: 12px;
+      padding-left: 18px;
+    }
+
+    .intro-card li {
+      margin-bottom: 6px;
+    }
+
+    .label-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #eef2ff;
+      color: #4f46e5;
+      font-size: 11px;
+      margin-bottom: 10px;
+    }
+
+    /* 기능 카드 */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    @media (max-width: 960px) {
+      .feature-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .feature-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 20px 18px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 10px 24px rgba(15,23,42,0.03);
+      font-size: 13px;
+      color: #4b5563;
+    }
+
+    .feature-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: #eef2ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .feature-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #111827;
+    }
+
+    .feature-tag {
+      font-size: 11px;
+      color: #6366f1;
+      margin-bottom: 6px;
+    }
+
+    /* 흐름 섹션 */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px) {
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .step-card {
+      border-radius: 18px;
+      padding: 18px 16px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+    }
+
+    .step-label {
+      font-size: 11px;
+      color: #6b7280;
+      margin-bottom: 4px;
+    }
+
+    .step-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    /* 추천 대상 */
+    .persona-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px) {
+      .persona-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .persona-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 18px 16px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .persona-chip {
+      font-size: 11px;
+      display: inline-flex;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #f1f5f9;
+      color: #64748b;
+      margin-bottom: 6px;
+    }
+
+    .persona-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    /* FAQ */
+    .faq-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    details {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 14px 16px;
+      border: 1px solid #e5e7eb;
+      font-size: 13px;
+    }
+
+    summary {
+      cursor: pointer;
+      list-style: none;
+      font-weight: 500;
+      color: #111827;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details p {
+      margin-top: 8px;
+      color: #4b5563;
+    }
+
+    /* CTA 섹션 */
+    .cta {
+      margin-top: 40px;
+      background: linear-gradient(135deg, #4f46e5, #22c1c3);
+      color: white;
+      border-radius: 24px;
+      padding: 24px 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cta-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .cta-desc {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid #e5e7eb;
+      padding: 32px 0 40px;
+      font-size: 12px;
+      color: #6b7280;
+      background: #ffffff;
+      margin-top: 40px;
+    }
+
+    .footer-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .footer-links a {
+      color: #6b7280;
+    }
+
+    .footer-links a:hover {
+      color: #111827;
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+  <!-- 헤더 -->
+  <header>
+    <div class="container nav">
+      <a href="#hero" class="logo">
+        <div class="logo-pill"></div>
+        <span>FINUP</span>
+      </a>
+      <nav class="nav-menu">
+        <a href="#about">서비스 소개</a>
+        <a href="#features">핵심 기능</a>
+        <a href="#flow">이용 방법</a>
+        <a href="#who">추천 대상</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="nav-cta">
+        <button class="btn btn-ghost">웹으로 먼저 써보기</button>
+        <button class="btn btn-primary">앱 출시 알림 받기</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 히어로 -->
+  <main>
+    <section id="hero" class="hero">
+      <div class="container hero-inner">
+        <div>
+          <div class="hero-tag">
+            <span>📱 청년을 위한 금융 인포메이션</span>
+            <span>FINUP</span>
+          </div>
+          <h1 class="hero-title">
+            <span>내 금융 레벨</span>을  
+            한 단계씩 <span>업(UP)</span> 시켜주는 앱
+          </h1>
+          <p class="hero-desc">
+            FINUP은 청년을 위해 만들어진 금융 정보 플랫폼입니다.<br/>
+            어려운 용어 없이, 지금 나에게 필요한 보험·대출·투자·지원금 정보를  
+            캐주얼하게 정리해서 알려줘요.
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-primary">앱 출시 알림 받기</button>
+            <button class="btn btn-ghost">브랜드 소개서 내려받기</button>
+          </div>
+          <p class="hero-desc-2">
+            아직 베타 준비 중이에요. 알림을 신청해 두시면 가장 먼저 소식을 보내드릴게요.
+          </p>
+          <div class="hero-badges">
+            <span class="hero-badge">청년 맞춤 금융 요약</span>
+            <span class="hero-badge">한 페이지 금융 리포트</span>
+            <span class="hero-badge">전문가 검수 콘텐츠</span>
+          </div>
+        </div>
+
+        <!-- 오른쪽: 앱 간단 목업 -->
+        <div class="hero-phone">
+          <div class="hero-phone-notch"></div>
+          <div class="hero-phone-screen">
+            <div>
+              <div class="hero-phone-tag">
+                <span class="dot"></span>
+                오늘의 금융 한 장 요약
+              </div>
+              <div class="hero-phone-title">
+                내 한 달 소비 패턴,  
+                10초 안에 파악하기
+              </div>
+              <div class="hero-phone-chip">
+                <div>
+                  <div class="hero-phone-label">이번 달 금융 한 줄 요약</div>
+                  <strong>배달·구독 서비스 지출이 또래 평균보다 18% 높아요</strong>
+                </div>
+                <div class="hero-phone-pill">
+                  줄일 수 있는 금액 보기 →
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="hero-phone-label">오늘의 액션 체크리스트</div>
+              <div class="hero-phone-row">
+                <span>✅ 청년 전월세 보증금 대출 조건 확인</span>
+                <span>3분 소요</span>
+              </div>
+              <div class="hero-phone-row">
+                <span>✅ 안 써도 되는 계좌 수수료 점검</span>
+                <span>1분 소요</span>
+              </div>
+              <div class="hero-phone-row">
+                <span>◻ 이번 달 카드 할인카테고리 확인</span>
+                <span>5분 소요</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 서비스 소개 -->
+    <section id="about">
+      <div class="container">
+        <div class="section-title-area">
+          <div class="section-eyebrow">ABOUT FINUP</div>
+          <h2 class="section-title">FINUP은 이런 브랜드예요</h2>
+          <p class="section-desc">
+            “재테크를 해야 하는 건 알겠는데, 뭐부터 봐야 할지 모르겠다”는 청년들을 위해  
+            금융 정보를 &lsquo;알아서 모아주고, 대신 씹어주는&rsquo; 금융 정보 동반자입니다.
+          </p>
+        </div>
+
+        <div class="intro-grid">
+          <div class="intro-card">
+            <div class="label-pill">
+              👟 청년 시선에서 다시 정리한 금융
+            </div>
+            <p>
+              FINUP은 복잡한 금융 상품 비교보다,  
+              <strong>지금 나에게 필요한 한 줄 요약</strong>에 집중합니다.
+            </p>
+            <ul>
+              <li>은행/정부/카드사 정보를 한 곳에 모아 보기 쉽게 재가공</li>
+              <li>전문 용어 대신 대학교·사회초년생 기준의 쉬운 설명</li>
+              <li>뉴스, 지원금, 혜택 정보를 놓치지 않도록 큐레이션</li>
+            </ul>
+          </div>
+          <div class="intro-card">
+            <div class="label-pill">
+              📊 “컨텐츠 앱”이자 “도구 앱”
+            </div>
+            <p>
+              읽고 끝나는 정보가 아니라,  
+              <strong>내 소비와 연결되는 액션</strong>까지 이어지도록 설계합니다.
+            </p>
+            <ul>
+              <li>한 달 소비 리포트와 함께 &lsquo;이번 달 액션 아이템&rsquo; 제안</li>
+              <li>지원금/만기/수수료 등의 중요한 일정 알림</li>
+              <li>다음 달 목표를 세우고 달성률을 확인할 수 있는 간단한 목표 관리</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 핵심 기능 -->
+    <section id="features">
+      <div class="container">
+        <div class="section-title-area">
+          <div class="section-eyebrow">FEATURES</div>
+          <h2 class="section-title">FINUP에서 할 수 있는 것들</h2>
+          <p class="section-desc">
+            토스처럼 복잡한 기능 전체를 다 담기보다는,  
+            청년에게 특히 중요한 &lsquo;정보&rsquo;와 &lsquo;한 줄 요약&rsquo;에 초점을 맞췄어요.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🧾</div>
+            <div class="feature-tag">하루 1장 리포트</div>
+            <div class="feature-title">오늘 내 소비·계좌·카드 한 번에 보기</div>
+            <p>
+              여러 앱을 옮겨 다닐 필요 없이,  
+              내 계좌·카드·이체 내역을 한 장에 요약해서 보여줍니다.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🧠</div>
+            <div class="feature-tag">청년 맞춤 설명</div>
+            <div class="feature-title">어려운 금융 용어를 캐주얼하게</div>
+            <p>
+              금리·신용점수·보증금 같은 단어를  
+              MZ가 쓰는 언어와 예시로 풀어서 설명해 줍니다.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <div class="feature-tag">액션 체크리스트</div>
+            <div class="feature-title">읽고 끝이 아니라, 행동으로 연결</div>
+            <p>
+              “지금 내가 할 수 있는 일 3가지”만 콕 집어  
+              체크리스트로 정리해 주어 실천까지 도와줘요.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">💸</div>
+            <div class="feature-tag">지원금·혜택 알림</div>
+            <div class="feature-title">놓치기 쉬운 청년 지원금 모아보기</div>
+            <p>
+              지역별 청년 정책, 전월세 보증금, 통신비·교통비 지원 같은  
+              정보를 캘린더와 함께 정리해 드립니다.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📚</div>
+            <div class="feature-tag">테마 가이드</div>
+            <div class="feature-title">“처음 재테크” 가이드 콘텐츠</div>
+            <p>
+              “사회초년생 첫 통장 만들기”, “첫 카드 고르는 법”처럼  
+              단계별로 따라 할 수 있는 테마 모음집이 제공됩니다.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🔔</div>
+            <div class="feature-tag">알림 & 리마인드</div>
+            <div class="feature-title">잊기 쉬운 금융 일정 리마인드</div>
+            <p>
+              카드 납부일, 청년 통장 납입일, 계약 만기일 등  
+              중요한 일정을 미리 알려줘요.
+            </p>
+          </div>
+        </div>
+
+        <div class="cta">
+          <div>
+            <div class="cta-title">FINUP 베타 테스터 모집 예정</div>
+            <div class="cta-desc">
+              실제 대학생·사회초년생 사용자와 함께 기능을 계속 다듬어 갈 예정입니다.  
+              아래 버튼을 눌러 베타 소식을 가장 먼저 받아보세요.
+            </div>
+          </div>
+          <button class="btn btn-primary">베타 소식 먼저 받기</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 이용 방법 -->
+    <section id="flow">
+      <div class="container">
+        <div class="section-title-area">
+          <div class="section-eyebrow">HOW IT WORKS</div>
+          <h2 class="section-title">3단계로 끝나는 FINUP 사용 흐름</h2>
+          <p class="section-desc">
+            복잡한 가입 절차보다는, 빨리 써보면서 익숙해질 수 있도록  
+            최대한 단순한 플로우로 설계했습니다.
+          </p>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-label">STEP 1</div>
+            <div class="step-title">프로필과 관심사 선택</div>
+            <p>
+              대학생인지, 취준생인지, 사회초년생인지에 따라  
+              관심 금융 주제를 선택하면, 홈 화면이 자동으로 맞춤 설정돼요.
+            </p>
+          </div>
+          <div class="step-card">
+            <div class="step-label">STEP 2</div>
+            <div class="step-title">계좌·카드 연동 (선택)</div>
+            <p>
+              원한다면 토스처럼 계좌·카드를 연결해  
+              한 달 소비 리포트와 액션 체크리스트를 받아볼 수 있어요.
+            </p>
+          </div>
+          <div class="step-card">
+            <div class="step-label">STEP 3</div>
+            <div class="step-title">하루 5분, 컨텐츠+체크리스트</div>
+            <p>
+              하루에 한 번, 오늘의 한 장 리포트와  
+              &lsquo;오늘 할 수 있는 3가지&rsquo;를 확인하고 체크해 보세요.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 추천 대상 -->
+    <section id="who">
+      <div class="container">
+        <div class="section-title-area">
+          <div class="section-eyebrow">FOR WHOM</div>
+          <h2 class="section-title">이런 분께 FINUP을 추천해요</h2>
+          <p class="section-desc">
+            “재테크 유튜브를 보긴 보는데,  
+            내 상황에 맞게 정리된 정보가 필요하다”는 청년들을 위한 서비스입니다.
+          </p>
+        </div>
+
+        <div class="persona-grid">
+          <div class="persona-card">
+            <div class="persona-chip">🎓 대학생</div>
+            <div class="persona-title">알바비·등록금 관리가 고민인 대학생</div>
+            <p>
+              “적금은 해야 할 것 같은데, 어디부터 시작해야 하지?”  
+              기본 통장·카드 구성부터 차근차근 도와드려요.
+            </p>
+          </div>
+          <div class="persona-card">
+            <div class="persona-chip">🧑‍💼 사회초년생</div>
+            <div class="persona-title">첫 월급, 어떻게 쓸지 막막한 사회초년생</div>
+            <p>
+              월세·보험·저축 비율을 어떻게 잡아야 할지 모를 때,  
+              다른 또래들의 평균 데이터를 참고해서 가이드라인을 제시합니다.
+            </p>
+          </div>
+          <div class="persona-card">
+            <div class="persona-chip">📈 재테크 입문자</div>
+            <div class="persona-title">영끌 말고, 기초부터 시작하고 싶은 사람</div>
+            <p>
+              공격적인 투자 정보 대신,  
+              &lsquo;지금 당장 계좌에서 새는 돈을 막는 것&rsquo;부터 함께 시작해요.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="container">
+        <div class="section-title-area">
+          <div class="section-eyebrow">FAQ</div>
+          <h2 class="section-title">자주 묻는 질문</h2>
+          <p class="section-desc">
+            FINUP은 아직 서비스 기획·디자인 단계에 있으며,  
+            아래 내용은 베타 버전 기준 안내입니다.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <details>
+            <summary>FINUP은 토스·뱅크샐러드랑 뭐가 달라요?</summary>
+            <p>
+              토스·뱅크샐러드는 계좌·투자·보험 등 모든 금융을 다루는 종합 플랫폼입니다.  
+              FINUP은 그 중에서도 <strong>“청년이 꼭 알아야 할 정보”</strong>에 집중해  
+              한 번에 소화할 수 있는 분량으로 재정리해 주는 것에 초점을 둡니다.
+            </p>
+          </details>
+          <details>
+            <summary>계좌·카드 연동을 꼭 해야 하나요?</summary>
+            <p>
+              아닙니다. 계좌 연동 없이도 금융 가이드·지원금 정보 등  
+              컨텐츠 기능만으로 이용할 수 있고, 원할 때만 연동하면 됩니다.
+            </p>
+          </details>
+          <details>
+            <summary>서비스는 언제 출시되나요?</summary>
+            <p>
+              현재 서비스 기획 및 디자인을 진행 중이며,  
+              베타 버전 공개 시 먼저 사용해볼 수 있도록 알림 신청 기능을 제공할 예정입니다.
+            </p>
+          </details>
+          <details>
+            <summary>앱이 아니라 웹으로도 볼 수 있나요?</summary>
+            <p>
+              최초 버전은 모바일 웹 형태로 제공하고,  
+              이후 iOS/Android 앱으로 확장하는 것을 목표로 하고 있습니다.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="logo">
+          <div class="logo-pill"></div>
+          <span>FINUP</span>
+        </div>
+        <div class="footer-links">
+          <a href="#">브랜드 소개</a>
+          <a href="#">문의하기</a>
+          <a href="#">개인정보 처리방침 (예정)</a>
+          <a href="#">이용약관 (예정)</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>
+          (예정) FINUP 팀 | 청년을 위한 금융 정보 서비스
+        </div>
+        <div>
+          © <span id="year"></span> FINUP. All rights reserved.
+        </div>
+      </div>
+    </div>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </footer>
+</body>
+</html>
