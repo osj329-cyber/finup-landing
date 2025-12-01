@@ -18,32 +18,66 @@
     a { color: inherit; text-decoration: none; }
 
     /* ============================
-       BRAND COLORS (ALL BLUE)
-       ============================ */
+       BRAND COLORS
+    ============================ */
     :root {
       --blue: #0400ff;
       --blue-light: #1a64ff;
       --blue-soft: #edf0ff;
-      --blue-bg: #eef3ff;
-      --gray: #6b7280;
       --border: #e5e7eb;
+      --gray: #6b7280;
     }
 
     /* ============================
-       LAYOUT & BASIC
-       ============================ */
+       LAYOUT
+    ============================ */
     .container {
       width: 100%;
       max-width: 1120px;
       margin: 0 auto;
       padding: 0 20px;
     }
-    section { padding: 80px 0; }
+    section { padding: 80px 0; position: relative; }
+
     h1, h2, h3 { letter-spacing: -0.03em; font-weight: 700; }
 
     /* ============================
+       SECTION PATTERN BACKGROUNDS
+       (A/B/C 패턴을 섹션 배경으로 사용)
+    ============================ */
+    .section-pattern-a,
+    .section-pattern-b,
+    .section-pattern-c {
+      position: relative;
+      overflow: hidden;
+    }
+    .section-pattern-a::before,
+    .section-pattern-b::before,
+    .section-pattern-c::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.16;
+      pointer-events: none;
+      z-index: -1;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+    .section-pattern-a::before {
+      background-image: url("finup_pattern_A_overlay.png");
+    }
+    .section-pattern-b::before {
+      background-image: url("finup_pattern_B_overlay.png");
+    }
+    .section-pattern-c::before {
+      background-image: url("finup_pattern_C_overlay.png");
+      background-size: 150% auto; /* 살짝 확대 느낌 */
+    }
+
+    /* ============================
        HEADER
-       ============================ */
+    ============================ */
     header {
       position: sticky; top: 0; z-index: 40;
       background: rgba(255,255,255,0.9);
@@ -136,20 +170,22 @@
       display: none;
       flex-direction: column;
       gap: 12px;
-      padding: 12px 0;
+      padding: 12px 0 16px;
       font-size: 15px;
       color: var(--gray);
+      border-bottom: 1px solid var(--border);
+      background: #fff;
     }
     .nav-menu-mobile.open { display: flex; }
 
     /* ============================
        HERO SECTION
-       ============================ */
+    ============================ */
     .hero {
       padding: 90px 0 110px;
       background:
-        radial-gradient(circle at top left, rgba(4,0,255,0.15), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(4,0,255,0.08), transparent 60%);
+        radial-gradient(circle at top left, rgba(4,0,255,0.18), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(4,0,255,0.10), transparent 60%);
     }
     .hero-inner {
       display: grid;
@@ -223,7 +259,7 @@
 
     /* ============================
        SECTION TITLES
-       ============================ */
+    ============================ */
     .section-title-area { margin-bottom: 40px; }
     .section-eyebrow { color: var(--blue); font-size: 12px; margin-bottom: 8px; }
     .section-title { font-size: 26px; margin-bottom: 10px; }
@@ -240,8 +276,8 @@
     }
 
     /* ============================
-       CARDS (INTRO / WHY / FEATURES)
-       ============================ */
+       CARDS & GRIDS
+    ============================ */
     .intro-grid {
       display: grid;
       grid-template-columns: 1.3fr 1fr;
@@ -262,7 +298,6 @@
     .why-grid,
     .feature-grid,
     .steps-grid,
-    .screens-grid,
     .persona-grid {
       display: grid;
       gap: 20px;
@@ -309,7 +344,7 @@
 
     /* ============================
        FAQ
-       ============================ */
+    ============================ */
     details {
       background: #fff;
       border: 1px solid var(--border);
@@ -321,7 +356,7 @@
 
     /* ============================
        CTA & BETA FORM
-       ============================ */
+    ============================ */
     .cta {
       margin-top: 40px;
       background: linear-gradient(135deg, var(--blue), var(--blue-light));
@@ -370,18 +405,19 @@
 
     /* ============================
        FOOTER
-       ============================ */
+    ============================ */
     footer {
       padding: 30px 0 40px;
       border-top: 1px solid var(--border);
       background: #fff;
       color: #555;
       font-size: 12px;
+      position: relative;
     }
 
     /* ============================
        REVEAL ANIMATION
-       ============================ */
+    ============================ */
     .reveal {
       opacity: 0;
       transform: translateY(16px);
@@ -391,7 +427,6 @@
       opacity: 1;
       transform: translateY(0);
     }
-
   </style>
 </head>
 
@@ -402,7 +437,7 @@
     <div class="container">
       <div class="nav">
         <a href="#" class="logo">
-          <img src="finup-logo.png" class="logo-img" />
+          <img src="finup-logo.png" class="logo-img" alt="FINUP logo" />
           <span>FINUP</span>
         </a>
 
@@ -415,7 +450,7 @@
           <a href="#faq">FAQ</a>
         </nav>
 
-        <div class="nav-cta">
+        <div class="nav-cta" style="display:flex; gap:8px; align-items:center;">
           <button class="btn btn-ghost" onclick="scrollToSection('beta')">웹으로 미리 보기</button>
           <button class="btn btn-primary" onclick="scrollToSection('beta')">앱 출시 알림 받기</button>
 
@@ -437,16 +472,16 @@
     </div>
   </header>
 
-  <!-- HERO -->
-  <section id="hero" class="hero">
+  <!-- HERO (PATTERN A) -->
+  <section id="hero" class="hero section-pattern-a">
     <div class="container hero-inner reveal">
 
       <div>
         <div class="hero-tag">📱 FINUP · 청년 금융 인포메이션</div>
 
         <h1 class="hero-title">
-          <span>금융의 </span> 모든 것을<br />
-          <span>FINUP</span> 하나로!
+          <span>내 금융 레벨</span>을<br />
+          한 단계씩 <span>업(UP)</span> 시켜주는 앱
         </h1>
 
         <p class="hero-desc">
@@ -519,7 +554,7 @@
           <p>복잡한 금융 용어 대신, 대학생·초년생 기준의 쉬운 설명을 제공합니다.</p>
           <ul style="padding-left:18px; margin-top:12px;">
             <li>은행/정부/카드사 핵심 요약</li>
-            <li>문장력 사전식 요약</li>
+            <li>핵심만 뽑아 한 줄 요약</li>
             <li>지금 해야 할 행동 1~3개 제안</li>
           </ul>
         </div>
@@ -549,7 +584,7 @@
         <div class="why-card">
           <div class="why-tag">01. 포지셔닝</div>
           <h3 style="margin-bottom:6px;">금융 동반자</h3>
-          <p>투자보다 '지금 나에게 필요한 정보'에 집중합니다.</p>
+          <p>투자/수익보다 '지금 나에게 필요한 정보'에 집중합니다.</p>
         </div>
 
         <div class="why-card">
@@ -567,8 +602,8 @@
     </div>
   </section>
 
-  <!-- FEATURES -->
-  <section id="features">
+  <!-- FEATURES (PATTERN B) -->
+  <section id="features" class="section-pattern-b">
     <div class="container reveal">
       <div class="section-title-area">
         <div class="section-eyebrow">FEATURES</div>
@@ -679,10 +714,10 @@
         <h2 class="section-title">자주 묻는 질문</h2>
       </div>
 
-      <div class="faq-list">
+      <div class="faq-list" style="display:flex; flex-direction:column; gap:12px;">
         <details>
           <summary>FINUP은 토스·뱅크샐러드와 무엇이 다른가요?</summary>
-          <p>FINUP은 청년 맞춤 금융 정보에만 집중합니다.</p>
+          <p>FINUP은 청년 맞춤 금융 정보에만 집중하는 서비스입니다.</p>
         </details>
         <details>
           <summary>계좌/카드 연동은 필수인가요?</summary>
@@ -700,8 +735,8 @@
     </div>
   </section>
 
-  <!-- BETA -->
-  <section id="beta">
+  <!-- BETA (PATTERN C) -->
+  <section id="beta" class="section-pattern-c">
     <div class="container reveal">
 
       <div class="section-title-area">
@@ -741,7 +776,7 @@
             <button class="btn btn-primary" type="submit">베타 알림 신청</button>
 
             <div style="font-size:12px; color:#666; margin-top:8px;">
-              지금은 데모 폼이며 실제 저장되지 않습니다.
+              지금은 데모 폼이며 실제로 데이터가 저장되지는 않습니다.
             </div>
           </form>
         </div>
@@ -749,7 +784,12 @@
         <div>
           <div class="label-pill">🤝 함께 만드는 서비스</div>
           <p style="font-size:14px; margin-bottom:12px;">
-            FINUP은 사용자 의견을 바탕으로 지속적으로 개선됩니다.
+            FINUP은 사용자 의견을 바탕으로 계속해서 개선됩니다.
+          </p>
+          <p style="font-size:13px; color:#555;">
+            베타 단계에서는 특히 청년 지원금, 소비 패턴 피드백,  
+            그리고 “읽기만 해도 이해되는 금융 설명” 부분에 집중하여  
+            실제 사용자 경험을 수집할 예정입니다.
           </p>
         </div>
       </div>
@@ -761,7 +801,7 @@
     <div class="container">
       <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px;">
         <div class="logo">
-          <img src="finup-logo.png" class="logo-img" />
+          <img src="finup-logo.png" class="logo-img" alt="FINUP logo" />
           <span>FINUP</span>
         </div>
 
@@ -775,7 +815,7 @@
 
       <div style="margin-top:20px; display:flex; justify-content:space-between; flex-wrap:wrap;">
         <span>© <span id="year"></span> FINUP. All rights reserved.</span>
-        <span>(예정) UP?UP! 팀</span>
+        <span>(예정) FINUP 팀</span>
       </div>
     </div>
   </footer>
@@ -813,13 +853,9 @@
 
     function handleFakeSubmit(e){
       e.preventDefault();
-      alert("데모 폼입니다. 실제로 저장되지는 않습니다 🙂");
+      alert("데모 폼입니다. 실제로 저장되지는 않지만, 나중에 진짜 서비스로 이어질 예정이에요 🙂");
     }
   </script>
 
 </body>
 </html>
-
-
-
-
