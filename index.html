@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <title>FINUP | 청년을 위한 금융 정보 플랫폼</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="FINUP은 청년에게 꼭 필요한 금융 정보를 쉽고 캐주얼하게 정리해주는 서비스입니다." />
+  <!-- 게임 느낌 폰트 -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- 헤더 -->
+  <header id="site-header">
+    <div class="container">
+      <div class="nav">
+        <!-- 로고 -->
+        <a href="#hero" class="logo">
+          <img src="finup-logo.png" alt="FINUP 로고" class="logo-img" />
+          <span>FINUP</span>
+          <span class="logo-level">BETA</span>
+        </a>
+
+        <nav class="nav-menu">
+          <a href="#about">서비스 소개</a>
+          <a href="#why">왜 FINUP인가</a>
+          <a href="#features">핵심 기능</a>
+          <a href="#flow">이용 방법</a>
+          <a href="#who">추천 대상</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+
+        <div class="nav-cta">
+          <button class="icon-btn" id="theme-toggle" aria-label="다크 모드 전환">🌙</button>
+          <button class="btn btn-ghost" onclick="scrollToSection('beta')">웹으로 먼저 써보기</button>
+          <button class="btn btn-primary" onclick="scrollToSection('beta')">앱 출시 알림 받기</button>
+          <button class="nav-toggle" id="nav-toggle" aria-label="메뉴 열기">
+            <span></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 모바일 메뉴 -->
+      <nav class="container nav-menu-mobile" id="nav-menu-mobile">
+        <a href="#about">서비스 소개</a>
+        <a href="#why">왜 FINUP인가</a>
+        <a href="#features">핵심 기능</a>
+        <a href="#flow">이용 방법</a>
+        <a href="#who">추천 대상</a>
+        <a href="#faq">FAQ</a>
+        <button class="btn btn-primary" style="margin-top:4px;" onclick="scrollToSection('beta')">앱 출시 알림 받기</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 메인 -->
+  <main>
+    <!-- 히어로 (패턴 A) -->
+    <section id="hero" class="hero section-pattern-a">
+      <div class="container hero-inner reveal">
+        <div>
+          <div class="hero-tag hero-tag-quest">
+            <span class="hero-tag-label">SERVICE</span>
+            <span>청년을 위한 금융 정보 요약</span>
+          </div>
+          <h1 class="hero-title">
+            금융의 모든 것을<br />
+            <span class="hero-title-main">FINUP</span> 하나로
+          </h1>
+          <p class="hero-desc">
+            FINUP은 청년을 위해 만들어진 금융 정보 플랫폼입니다.<br/>
+            어려운 용어 없이, 지금 나에게 필요한 보험·대출·투자·지원금 정보를  
+            캐주얼하게 정리해서 알려줘요.
+          </p>
+
+          <!-- 스탯 박스 → 금융 현황 박스 -->
+          <div class="hero-stats">
+            <div class="hero-stat-row">
+              <span class="hero-stat-label">현재 금융 이해도</span>
+              <span class="hero-stat-value">입문 단계</span>
+            </div>
+            <div class="hero-bar-wrap">
+              <div class="hero-bar-bg">
+                <div class="hero-bar-fill"></div>
+              </div>
+              <span class="hero-bar-text">오늘 한 번만 정리해도, 꼭 알아야 할 핵심 내용을 70% 이상 이해할 수 있어요.</span>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <button class="btn btn-primary btn-glow" onclick="scrollToSection('beta')">🔔 출시 알림 신청하기</button>
+            <button class="btn btn-ghost" onclick="scrollToSection('features')">📄 핵심 기능 먼저 보기</button>
+          </div>
+          <p class="hero-desc-2">
+            아직 베타 준비 중이에요. 알림을 신청해 두시면 가장 먼저 소식을 보내드릴게요.
+          </p>
+          <div class="hero-badges">
+            <span class="hero-badge">🎯 청년 맞춤 금융 요약</span>
+            <span class="hero-badge">🧾 한 페이지 금융 리포트</span>
+            <span class="hero-badge">✅ 오늘 할 일 정리</span>
+          </div>
+        </div>
+
+        <!-- 앱 목업 -->
+        <div class="hero-phone">
+          <div class="hero-phone-notch"></div>
+          <div class="hero-phone-screen">
+            <div>
+              <div class="hero-phone-tag">
+                <span class="dot"></span>
+                DAILY REPORT
+              </div>
+              <div class="hero-phone-title">
+                내 한 달 소비 패턴,  
+                10초 안에 파악하기
+              </div>
+              <div class="hero-phone-chip">
+                <div>
+                  <div class="hero-phone-label">이번 달 금융 한 줄 요약</div>
+                  <strong>배달·구독 지출이 평균보다 18% 높아요</strong>
+                </div>
+                <div class="hero-phone-pill">
+                  줄일 수 있는 항목 보기 →
+                </div>
+              </div>
+            </div>
+            <div class="hero-phone-quest">
+              <div class="hero-phone-label">오늘의 금융 체크리스트</div>
+              <div class="hero-phone-row">
+                <span>✅ 전월세 보증금 대출 조건 확인</span>
+                <span>약 3분 소요</span>
+              </div>
+              <div class="hero-phone-row">
+                <span>✅ 계좌 수수료 점검</span>
+                <span>약 1분 소요</span>
+              </div>
+              <div class="hero-phone-row">
+                <span>◻ 카드 할인 카테고리 확인</span>
+                <span>약 5분 소요</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 서비스 소개 -->
+    <section id="about">
+      <div class="container reveal">
+        <div class="section-title-area">
+          <div class="section-eyebrow">ABOUT · 서비스 소개</div>
+          <h2 class="section-title">FINUP은 이런 브랜드예요</h2>
+          <p class="section-desc">
+            “재테크를 해야 하는 건 알겠는데, 뭐부터 봐야 할지 모르겠다”는 청년들을 위해  
+            금융 정보를 &lsquo;알아서 모아주고, 대신 정리해 주는&rsquo; 금융 정보 동반자입니다.
+          </p>
+        </div>
+
+        <div class="intro-grid">
+          <div class="intro-card">
+            <div class="label-pill">
+              👟 청년 시선에서 다시 정리한 금융
+            </div>
+            <p>
+              FINUP은 복잡한 금융 상품 비교보다,  
+              <strong>지금 나에게 필요한 한 줄 요약</strong>에 집중합니다.
+            </p>
+            <ul>
+              <li>은행/정부/카드사 정보를 한 곳에 모아 보기 쉽게 재가공</li>
+              <li>전문 용어 대신 대학교·사회초년생 기준의 쉬운 설명</li>
+              <li>뉴스, 지원금, 혜택 정보를 놓치지 않도록 큐레이션</li>
+            </ul>
+          </div>
+          <div class="intro-card">
+            <div class="label-pill">
+              📊 읽고 나서 바로 활용할 수 있는 정보
+            </div>
+            <p>
+              단순히 읽고 끝나는 정보가 아니라,  
+              <strong>내 소비와 연결되는 행동</strong>까지 이어지도록 설계합니다.
+            </p>
+            <ul>
+              <li>한 달 소비 리포트와 함께 &lsquo;이번 달 체크 포인트&rsquo; 제안</li>
+              <li>지원금/만기/수수료 등의 중요한 일정 알림</li>
+              <li>다음 달 목표를 세우고 달성률을 확인할 수 있는 간단한 목표 관리</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY FINUP -->
+    <section id="why" class="section-pattern-b">
+      <div class="container reveal">
+        <div class="section-title-area">
+          <div class="section-eyebrow">WHY FINUP · 선택 이유</div>
+          <h2 class="section-title">다른 금융 앱 대신, 왜 FINUP인가요?</h2>
+          <p class="section-desc">
+            기존 앱들이 &lsquo;모든 금융&rsquo;을 다루는 동안, FINUP은  
+            <strong>청년의 &lsquo;지금&rsquo;에 꼭 필요한 정보</strong>에만 집중합니다.
+          </p>
+        </div>
+
+        <div class="why-grid">
+          <div class="why-card">
+            <div class="why-tag">01 · 포지셔닝</div>
+            <div class="why-title">“재테크 앱”이 아니라 “금융 동반자”</div>
+            <p>
+              투자 수익을 자랑하는 대신,  
+              오늘 당장 새는 돈을 막고 나에게 맞는 기준을 세우는 데 집중합니다.
+            </p>
+          </div>
+          <div class="why-card">
+            <div class="why-tag">02 · 대상</div>
+            <div class="why-title">대학생·사회초년생에 맞춘 언어</div>
+            <p>
+              연봉 1억 자산가가 아니라,  
+              막 사회에 나온 청년의 월급·월세·등록금 현실에 맞는 예시 위주로 설명합니다.
+            </p>
+          </div>
+          <div class="why-card">
+            <div class="why-tag">03 · 이용 경험</div>
+            <div class="why-title">하루 5분이면 충분한 구성</div>
+            <p>
+              공부하듯 빡세게 배우는 것이 아니라,  
+              출·퇴근길에 한 장 요약만 훑어봐도 의미 있는 인사이트를 가져가도록 디자인합니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 핵심 기능 -->
+    <section id="features">
+      <div class="container reveal">
+        <div class="section-title-area">
+          <div class="section-eyebrow">FEATURES · 주요 기능</div>
+          <h2 class="section-title">FINUP에서 제공하는 주요 기능</h2>
+          <p class="section-desc">
+            토스처럼 복잡한 기능 전체를 다 담기보다는,  
+            청년에게 특히 중요한 &lsquo;정보&rsquo;와 &lsquo;한 줄 요약&rsquo;에 초점을 맞췄어요.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🧾</div>
+            <div class="feature-tag">리포트 · 하루 1장 요약</div>
+            <div class="feature-title">오늘 내 소비·계좌·카드 한 번에 보기</div>
+            <p>
+              여러 앱을 옮겨 다닐 필요 없이,  
+              내 계좌·카드·이체 내역을 한 장에 요약해서 보여줍니다.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🧠</div>
+            <div class="feature-tag">해설 · 청년 맞춤 설명</div>
+            <div class="feature-title">어려운 금융 용어를 이해하기 쉽게</div>
+            <p>
+              금리·신용점수·보증금 같은 단어를  
+              청년이 쓰는 언어와 예시로 풀어서 설명해 줍니다.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <div class="feature-tag">체크리스트 · 오늘 할 일</div>
+            <div class="feature-title">읽고 끝이 아니라, 행동으로 연결</div>
+            <p>
+              “지금 내가 할 수 있는 일 3가지”만 콕 집어  
+              체크리스트로 정리해 주어 실천까지 도와줘요.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">💸</div>
+            <div class="feature-tag">알림 · 지원금·혜택 정보</div>
+            <div class="feature-title">놓치기 쉬운 청년 지원금 모아보기</div>
+            <p>
+              지역별 청년 정책, 전월세 보증금, 통신비·교통비 지원 같은  
+              정보를 캘린더와 함께 정리해 드립니다.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📚</div>
+            <div class="feature-tag">가이드 · 테마별 안내</div>
+            <div class="feature-title">“처음 재테크” 가이드 콘텐츠</div>
+            <p>
+              “사회초년생 첫 통장 만들기”, “첫 카드 고르는 법”처럼  
+              단계별로 따라 할 수 있는 테마 모음집이 제공됩니다.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🔔</div>
+            <div class="feature-tag">일정 · 리마인드</div>
+            <div class="feature-title">잊기 쉬운 금융 일정 리마인드</div>
+            <p>
+              카드 납부일, 청년 통장 납입일, 계약 만기일 등  
+              중요한 일정을 미리 알려줘요.
+            </p>
+          </div>
+        </div>
+
+        <div class="cta">
+          <div>
+            <div class="cta-title">FINUP 베타 서비스 사전 신청 예정</div>
+            <div class="cta-desc">
+              실제 대학생·사회초년생 사용자의 의견을 반영해 기능과 화면을 지속적으로 개선할 계획입니다.  
+              아래 버튼을 눌러 베타 소식을 가장 먼저 받아보세요.
+            </div>
+          </div>
+          <button class="btn btn-primary btn-glow" onclick="scrollToSection('beta')">📩 베타 소식 신청</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 이용 방법 -->
+    <section id="flow" class="section-pattern-b">
+      <div class="container reveal">
+        <div class="section-title-area">
+          <div class="section-eyebrow">HOW IT WORKS · 이용 방법</div>
+          <h2 class="section-title">3단계로 끝나는 FINUP 사용 흐름</h2>
+          <p class="section-desc">
+            복잡한 가입 절차보다는, 빨리 써보면서 익숙해질 수 있도록  
+            최대한 단순한 플로우로 설계했습니다.
+          </p>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-label">STEP 1</div>
+            <div class="step-title">프로필과 관심사 선택</div>
+            <p>
+              대학생인지, 취준생인지, 사회초년생인지에 따라  
+              관심 금융 주제를 선택하면, 홈 화면이 자동으로 맞춤 설정돼요.
+            </p>
+          </div>
+          <div class="step-card">
+            <div class="step-label">STEP 2</div>
+            <div class="step-title">계좌·카드 연동 (선택)</div>
+            <p>
+              원한다면 계좌·카드를 연결해  
+              한 달 소비 리포트와 체크리스트를 받아볼 수 있어요.
+            </p>
+          </div>
+          <div class="step-card">
+            <div class="step-label">STEP 3</div>
+            <div class="step-title">하루 5분, 요약과 할 일 확인</div>
+            <p>
+              하루에 한 번, 오늘의 한 장 리포트와  
+              &lsquo;오늘 할 수 있는 3가지&rsquo;를 확인하고 체크해 보세요.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 화면 예시 -->
+    <section id="screens">
+      <div class="container reveal">
+        <div class="section-title-area">
+          <div class="section-eyebrow">UI SNAPSHOT · 화면 미리보기</div>
+          <h2 class="section-title">FINUP 화면은 이렇게 구성돼요</h2>
+          <p class="section-desc">
+            아래는 실제 앱 디자인이 들어갈 자리예요.  
+            지금은 와이어프레임 형태지만, 나중에 Figma 시안이 나오면 이미지만 교체하면 됩니다.
+          </p>
+        </div>
+
+        <div class="screens-grid">
+          <div class="screen-card">
+            <div>
+              <div class="screen-tag">HOME</div>
+              <div class="screen-head">오늘의 금융 한 장 요약</div>
+              <p>소비 요약, 계좌 잔액, 오늘의 체크리스트가 한 화면에 배치됩니다.</p>
+            </div>
+            <div class="screen-placeholder">
+              홈 화면 목업 이미지 자리
+            </div>
+          </div>
+          <div class="screen-card">
+            <div>
+              <div class="screen-tag">GUIDE</div>
+              <div class="screen-head">청년 맞춤 금융 가이드</div>
+              <p>“첫 월급 사용법” 같은 테마 콘텐츠를 스토리 형식으로 제공합니다.</p>
+            </div>
+            <div class="screen-placeholder">
+              가이드 화면 목업 이미지 자리
+            </div>
+          </div>
+          <div class="screen-card">
+            <div>
+              <div class="screen-tag">INSIGHT</div>
+              <div class="screen-head">한 달 소비 인사이트</div>
+              <p>카테고리별 지출 그래프와 함께, 다음 달을 위한 제안을 보여줍니다.</p>
+            </div>
+            <div class="screen-placeholder">
+              인사이트 화면 목업 이미지 자리
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 추천 대상 -->
+    <section id="who" class="section-pattern-b">
+      <div class="container reveal">
+        <div class="section-title-area">
+          <div class="section-eyebrow">FOR WHOM · 추천 대상</div>
+          <h2 class="section-title">이런 분께 FINUP을 추천해요</h2>
+          <p class="section-desc">
+            “재테크 유튜브를 보긴 보는데,  
+            내 상황에 맞게 정리된 정보가 필요하다”는 청년들을 위한 서비스입니다.
+          </p>
+        </div>
+
+        <div class="persona-grid">
+          <div class="persona-card">
+            <div class="persona-chip">🎓 대학생</div>
+            <div class="persona-title">알바비·등록금 관리가 고민인 대학생</div>
+            <p>
+              “적금은 해야 할 것 같은데, 어디부터 시작해야 하지?”  
+              기본 통장·카드 구성부터 차근차근 도와드려요.
+            </p>
+          </div>
+          <div class="persona-card">
+            <div class="persona-chip">🧑‍💼 사회초년생</div>
+            <div class="persona-title">첫 월급, 어떻게 쓸지 막막한 사회초년생</div>
+            <p>
+              월세·보험·저축 비율을 어떻게 잡아야 할지 모를 때,  
+              다른 또래들의 평균 데이터를 참고해서 가이드라인을 제시합니다.
+            </p>
+          </div>
+          <div class="persona-card">
+            <div class="persona-chip">📈 재테크 입문자</div>
+            <div class="persona-title">영끌 말고, 기초부터 시작하고 싶은 사람</div>
+            <p>
+              공격적인 투자 정보 대신,  
+              &lsquo;지금 당장 계좌에서 새는 돈을 막는 것&rsquo;부터 함께 시작해요.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="container reveal">
+        <div class="section-title-area">
+          <div class="section-eyebrow">FAQ</div>
+          <h2 class="section-title">자주 묻는 질문</h2>
+          <p class="section-desc">
+            FINUP은 아직 서비스 기획·디자인 단계에 있으며,  
+            아래 내용은 베타 버전 기준 안내입니다.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <details>
+            <summary>FINUP은 토스·뱅크샐러드랑 뭐가 달라요?</summary>
+            <p>
+              토스·뱅크샐러드는 계좌·투자·보험 등 모든 금융을 다루는 종합 플랫폼입니다.  
+              FINUP은 그 중에서도 <strong>“청년이 꼭 알아야 할 정보”</strong>에 집중해  
+              한 번에 소화할 수 있는 분량으로 재정리해 주는 것에 초점을 둡니다.
+            </p>
+          </details>
+          <details>
+            <summary>계좌·카드 연동을 꼭 해야 하나요?</summary>
+            <p>
+              아닙니다. 계좌 연동 없이도 금융 가이드·지원금 정보 등  
+              컨텐츠 기능만으로 이용할 수 있고, 원할 때만 연동하면 됩니다.
+            </p>
+          </details>
+          <details>
+            <summary>서비스는 언제 출시되나요?</summary>
+            <p>
+              현재 서비스 기획 및 디자인을 진행 중이며,  
+              베타 버전 공개 시 먼저 사용해볼 수 있도록 알림 신청 기능을 제공할 예정입니다.
+            </p>
+          </details>
+          <details>
+            <summary>앱이 아니라 웹으로도 볼 수 있나요?</summary>
+            <p>
+              최초 버전은 모바일 웹 형태로 제공하고,  
+              이후 iOS/Android 앱으로 확장하는 것을 목표로 하고 있습니다.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 베타 신청 (패턴 C) -->
+    <section id="beta" class="section-pattern-c">
+      <div class="container reveal">
+        <div class="section-title-area">
+          <div class="section-eyebrow">BETA SIGN-UP · 안내</div>
+          <h2 class="section-title">FINUP 베타 출시 알림 받기</h2>
+          <p class="section-desc">
+            실제 출시는 아직 준비 중이지만, 베타 오픈 시 가장 먼저 소식을 받아보고 싶은 분들은  
+            아래 정보를 간단히 남겨 주세요. (지금은 데모 폼이며, 추후 실제 신청 폼으로 교체 예정입니다.)
+          </p>
+        </div>
+
+        <div class="beta-layout">
+          <div class="beta-form-card">
+            <form onsubmit="handleFakeSubmit(event)">
+              <div class="beta-form-row">
+                <label for="name">이름</label>
+                <input id="name" class="beta-input" type="text" placeholder="홍길동" required />
+              </div>
+              <div class="beta-form-row">
+                <label for="email">연락 가능한 이메일</label>
+                <input id="email" class="beta-input" type="email" placeholder="you@example.com" required />
+              </div>
+              <div class="beta-form-row">
+                <label for="role">현재 상태</label>
+                <select id="role" class="beta-select">
+                  <option value="">선택해주세요</option>
+                  <option value="student">대학생</option>
+                  <option value="job-seeker">취준생</option>
+                  <option value="junior">사회초년생</option>
+                  <option value="other">기타</option>
+                </select>
+              </div>
+              <div class="beta-form-row">
+                <label for="interest">FINUP에서 가장 기대하는 점</label>
+                <textarea id="interest" class="beta-textarea" placeholder="예: 청년 지원금 놓치지 않게 알림 받고 싶어요"></textarea>
+              </div>
+              <button class="btn btn-primary btn-glow" type="submit" style="margin-top: 6px;">베타 알림 신청하기 (데모)</button>
+              <div class="beta-note">
+                실제 서비스 오픈 전에는 어떠한 광고 메일도 보내지 않으며,  
+                입력하신 정보는 오직 제품 개발 참고용으로만 사용될 예정입니다. (데모 텍스트)
+              </div>
+            </form>
+          </div>
+
+          <div>
+            <div class="label-pill">🤝 함께 만드는 서비스</div>
+            <p style="font-size:14px; color:var(--text-secondary, #4b5563); margin-bottom:12px;">
+              FINUP은 처음부터 완성된 제품이 아니라,  
+              실제 사용자 목소리를 들으면서 계속 다듬어 가는 &lsquo;진행형 프로젝트&rsquo;입니다.
+            </p>
+            <ul style="font-size:13px; color:var(--text-secondary, #4b5563); padding-left:18px; margin-bottom:10px;">
+              <li>베타 기간 동안 기능/화면 피드백에 우선 반영</li>
+              <li>출시 전 비공개 기능을 먼저 체험할 수 있는 기회</li>
+              <li>서비스 크레딧 또는 작은 리워드를 제공할 예정 (추후 안내)</li>
+            </ul>
+            <button class="btn btn-text" type="button" onclick="scrollToSection('hero')">
+              맨 위로 올라가기 <span>↑</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 푸터 -->
+  <footer>
+    <div class="container" class="section-pattern-b">
+      <div class="footer-top">
+        <div class="logo">
+          <img src="finup-logo.png" alt="FINUP 로고" class="logo-img" />
+          <span>FINUP</span>
+          <span class="logo-level">BETA</span>
+        </div>
+        <div class="footer-links">
+          <a href="#about">브랜드 소개</a>
+          <a href="#beta">베타 신청</a>
+          <a href="#">문의하기(준비 중)</a>
+          <a href="#">개인정보 처리방침 (예정)</a>
+          <a href="#">이용약관 (예정)</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>
+          (예정) FINUP 팀 | 청년을 위한 금융 정보 서비스
+        </div>
+        <div>
+          © <span id="year"></span> FINUP. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
