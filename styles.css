@@ -2073,3 +2073,143 @@ html[data-theme="light"] .big-step-chip {
   -webkit-background-clip: text;
   color: transparent;
 }
+
+/* ===============================
+   📱 MOBILE OPTIMIZATION
+   =============================== */
+@media (max-width: 640px) {
+
+  /* 전체 컨테이너 여백 */
+  .container {
+    padding: 0 16px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    padding: 72px 0 80px;
+  }
+
+  .hero-inner {
+    gap: 28px;
+  }
+
+  .hero-title {
+    font-size: 30px;
+    line-height: 1.25;
+  }
+
+  .hero-desc {
+    font-size: 14px;
+  }
+
+  /* 버튼 세로 정렬 */
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* 📱 모바일에서는 폰 목업 축소 */
+  .hero-phone {
+    width: 260px;
+    padding: 12px 10px;
+    border-radius: 26px;
+  }
+
+  .hero-phone-screen {
+    padding: 12px;
+    font-size: 11px;
+    min-height: 220px;
+  }
+
+  /* ---------- WHY ---------- */
+  .why-col-title {
+    font-size: 16px;
+  }
+
+  .why-list li {
+    grid-template-columns: 70px 1fr;
+    padding: 10px;
+  }
+
+  .why-item-body strong {
+    font-size: 13px;
+  }
+
+  .why-item-body p {
+    font-size: 12px;
+  }
+
+  /* ---------- FEATURES ---------- */
+  .features-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .features-cards {
+    gap: 14px;
+  }
+
+  .flow-item {
+    padding: 16px 14px;
+  }
+
+  /* 이미지 아래로 */
+  .features-visual img {
+    max-width: 100%;
+    border-radius: 18px;
+  }
+
+  /* ---------- FLOW ---------- */
+  .big-step {
+    gap: 14px;
+  }
+
+  .big-step-num {
+    font-size: 42px;
+    opacity: 0.18;
+  }
+
+  .big-step-title {
+    font-size: 15px;
+  }
+
+  .big-step-desc {
+    font-size: 13px;
+  }
+
+  /* ---------- CTA ---------- */
+  .cta {
+    padding: 20px 16px;
+  }
+
+  .cta-title {
+    font-size: 16px;
+  }
+
+  .cta-desc {
+    font-size: 13px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    padding: 28px 0;
+    text-align: center;
+  }
+
+  .footer-top,
+  .footer-bottom {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .hide-on-mobile {
+    display: none;
+  }
+}

@@ -91,3 +91,10 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   };
 });
+
+// 모바일 메뉴 클릭 시 자동 닫기
+document.querySelectorAll("#nav-menu-mobile a").forEach(link => {
+  link.addEventListener("click", () => {
+    document.getElementById("nav-menu-mobile")?.classList.remove("open");
+  });
+});
