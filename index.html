@@ -329,6 +329,53 @@
   </div>
 </section>
 
+    <!-- CARD NEWS · 카드뉴스 슬라이더 -->
+    <section id="news" class="news section-pattern-b" aria-label="카드뉴스">
+      <div class="container reveal">
+        <div class="section-title-area">
+          <div class="section-eyebrow">CARD NEWS · 한 장 요약</div>
+          <h2 class="section-title">카드뉴스로 빠르게 훑어보기</h2>
+          <p class="section-desc">
+            중요한 금융 이슈를 카드뉴스로 정리해요. 좌우로 넘기며 한 장씩 확인해 보세요.
+          </p>
+        </div>
+
+        <div class="news-slider" data-news-slider>
+          <button class="news-nav" type="button" data-news-prev aria-label="이전 카드뉴스">‹</button>
+
+          <div class="news-viewport" data-news-viewport tabindex="0" aria-label="카드뉴스 슬라이더">
+            <div class="news-track" data-news-track>
+              <!-- ✅ 카드뉴스 이미지는 /images/news/ 폴더에 넣고 파일명만 맞추면 됩니다 -->
+              <figure class="news-slide">
+                <img src="images/news/news-01.png" alt="카드뉴스 1" loading="lazy" />
+              </figure>
+              <figure class="news-slide">
+                <img src="images/news/news-02.png" alt="카드뉴스 2" loading="lazy" />
+              </figure>
+              <figure class="news-slide">
+                <img src="images/news/news-03.png" alt="카드뉴스 3" loading="lazy" />
+              </figure>
+              <figure class="news-slide">
+                <img src="images/news/news-04.png" alt="카드뉴스 4" loading="lazy" />
+              </figure>
+              <figure class="news-slide">
+                <img src="images/news/news-05.png" alt="카드뉴스 5" loading="lazy" />
+              </figure>
+            </div>
+          </div>
+
+          <button class="news-nav" type="button" data-news-next aria-label="다음 카드뉴스">›</button>
+        </div>
+
+        <div class="news-dots" data-news-dots aria-label="카드뉴스 페이지"></div>
+
+        <p class="beta-note" style="margin-top:10px;">
+          카드뉴스 이미지는 <code>images/news/</code> 폴더에 넣고, 위의 <code>img src</code>만 파일명에 맞게 바꿔주면 됩니다.
+        </p>
+      </div>
+    </section>
+
+
     <!-- 메시지 섹션 (카드 없는 리듬 전환) -->
     <section class="finup-message section-pattern-b" aria-label="FINUP 메시지">
       <div class="container reveal">
@@ -632,5 +679,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
-<div class="hero-phone hide-on-mobile"></div>
